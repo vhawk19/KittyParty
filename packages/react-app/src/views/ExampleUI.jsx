@@ -16,7 +16,7 @@ export default function ExampleUI({purpose, setPurposeEvents, address, mainnetPr
         ⚙️ Here is an example UI that displays and sets the purpose in your smart contract:
       */}
       <div style={{border:"1px solid #cccccc", padding:16, width:400, margin:"auto",marginTop:64}}>
-        <h2>Example UI:</h2>
+        <h2>Lottery UI:</h2>
 
         <h4>purpose: {purpose}</h4>
 
