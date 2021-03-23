@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.2;
 
-import "https://github.com/smartcontractkit/chainlink/blob/master/evm-contracts/src/v0.6/VRFConsumerBase.sol";
-
+// import "https://github.com/smartcontractkit/chainlink/blob/master/evm-contracts/src/v0.6/VRFConsumerBase.sol";
+import "@chainlink/contracts/src/v0.6/VRFConsumerBase.sol";
 
 contract LotteryWinner is VRFConsumerBase {
     

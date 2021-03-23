@@ -1,42 +1,6 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "/home/wizgot/projects/chainlink/KittyParty/packages/hardhat/contracts/YourContract.sol": {
-      "lastModificationDate": 1616371196223,
-      "contentHash": "1920f8858380018431d5a9a1cccc19a4",
-      "sourceName": "contracts/YourContract.sol",
-      "solcConfig": {
-        "version": "0.7.6",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "hardhat/console.sol"
-      ],
-      "versionPragmas": [
-        ">=0.6.0 <0.9.0"
-      ],
-      "artifacts": [
-        "YourContract"
-      ]
-    },
     "/home/wizgot/projects/chainlink/KittyParty/packages/hardhat/node_modules/hardhat/console.sol": {
       "lastModificationDate": 1616408349283,
       "contentHash": "cc4777addd464ea56fa35b1c45df0591",
@@ -69,6 +33,182 @@
       ],
       "artifacts": [
         "console"
+      ]
+    },
+    "/home/wizgot/projects/chainlink/KittyParty/packages/hardhat/contracts/LotteryWinner.sol": {
+      "lastModificationDate": 1616517362846,
+      "contentHash": "fa6f59a45397cf5d7d5f1509c1020e02",
+      "sourceName": "contracts/LotteryWinner.sol",
+      "solcConfig": {
+        "version": "0.6.7",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@chainlink/contracts/src/v0.6/VRFConsumerBase.sol"
+      ],
+      "versionPragmas": [
+        "^0.6.2"
+      ],
+      "artifacts": [
+        "LotteryWinner"
+      ]
+    },
+    "/home/wizgot/projects/chainlink/KittyParty/packages/hardhat/node_modules/@chainlink/contracts/src/v0.6/VRFConsumerBase.sol": {
+      "lastModificationDate": 1616517625526,
+      "contentHash": "d0814ffd4b6a10aaed8b311ff73f341a",
+      "sourceName": "@chainlink/contracts/src/v0.6/VRFConsumerBase.sol",
+      "solcConfig": {
+        "version": "0.6.7",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./vendor/SafeMathChainlink.sol",
+        "./interfaces/LinkTokenInterface.sol",
+        "./VRFRequestIDBase.sol"
+      ],
+      "versionPragmas": [
+        "^0.6.0"
+      ],
+      "artifacts": [
+        "VRFConsumerBase"
+      ]
+    },
+    "/home/wizgot/projects/chainlink/KittyParty/packages/hardhat/node_modules/@chainlink/contracts/src/v0.6/vendor/SafeMathChainlink.sol": {
+      "lastModificationDate": 1616517626576,
+      "contentHash": "5caf46296cfce2e0b96cb3028b626ee5",
+      "sourceName": "@chainlink/contracts/src/v0.6/vendor/SafeMathChainlink.sol",
+      "solcConfig": {
+        "version": "0.6.7",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.6.0"
+      ],
+      "artifacts": [
+        "SafeMathChainlink"
+      ]
+    },
+    "/home/wizgot/projects/chainlink/KittyParty/packages/hardhat/node_modules/@chainlink/contracts/src/v0.6/interfaces/LinkTokenInterface.sol": {
+      "lastModificationDate": 1616517626566,
+      "contentHash": "bb291d0e43a81edd96f781b2760d9553",
+      "sourceName": "@chainlink/contracts/src/v0.6/interfaces/LinkTokenInterface.sol",
+      "solcConfig": {
+        "version": "0.6.7",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.6.0"
+      ],
+      "artifacts": [
+        "LinkTokenInterface"
+      ]
+    },
+    "/home/wizgot/projects/chainlink/KittyParty/packages/hardhat/node_modules/@chainlink/contracts/src/v0.6/VRFRequestIDBase.sol": {
+      "lastModificationDate": 1616517625526,
+      "contentHash": "d06006d32515b595a7b70c88328ffd7e",
+      "sourceName": "@chainlink/contracts/src/v0.6/VRFRequestIDBase.sol",
+      "solcConfig": {
+        "version": "0.6.7",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.6.0"
+      ],
+      "artifacts": [
+        "VRFRequestIDBase"
       ]
     }
   }
