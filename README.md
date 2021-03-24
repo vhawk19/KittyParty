@@ -130,11 +130,13 @@ For transferring assets for gas fees and such we will make use of a gnosis safe 
   
 
 **Under Dashboard**:
+
 -> As a Kitty Kreator, user can select an option to create a Kitty Party
 
 -> As a Kitten, user can see the pending invites 
 
-## Kitty Party - On Chain
+
+## Kitty Party - Main Flow
 
 **Pre-requisite**: 
 * Kitty Kreators and Kittens own a Crypto wallet
