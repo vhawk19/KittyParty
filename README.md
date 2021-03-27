@@ -122,11 +122,11 @@ For transferring assets for gas fees and such we will make use of a gnosis safe 
 ## User Account (Login/Registration)
 1. User can create an account via private key, MetaMask
 2. User reaches dashboard with the list of Kitty Parties with different statuses.
-   - ACTIVE: Party is created by the user as Kitty Kreator and waiting for Kitten's to complete the payments
-   - PENDING: Party is Pending action from user as Kitten  
+   - PENDING: Party is created by the user as Kitty Kreator and waiting for Kitten's to complete the payments. Party is Pending action from Kitten  
    - STAKING: Party has started and the funds are used to be staked 
    - AT RISK: Party noted with lower total staking amount as a Kitten did not do any payment from previous round and total staking amount was used up.
    - HALTED: Party is closed due to no enough staking from the Kitty Kreator
+   - ENDED: Party has ended :D
   
 
 **Under Dashboard**:
