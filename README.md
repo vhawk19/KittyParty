@@ -1,799 +1,204 @@
-# 🏗 scaffold-eth
+# KittyParty
+The first application on kurisan network
 
-> is everything you need to get started building decentralized applications powered by Ethereum
+# Introduction
 
----
+The Kitty Party app will be the first app on the kurisan network. The Kitty Party application will enable a group of people to pool resources into staking in a pool. It allows transactions in local currencies and this can be translated into an actual stake in crypto land in return for staking rewards or farming rewards. The rewards along with the original amount is returned to one lottery winner from the kitty pool.
 
+![Kitty Party](https://i.ibb.co/t4gkX1Y/photo-2021-03-17-20-06-58.jpg)
 
-#### [ 🏃‍♀️ Quick Start ](https://github.com/austintgriffith/scaffold-eth#%EF%B8%8F-quick-start)
+The staked value is bound to be minimal and will be mainly used to offset the fees that would be required to run the system by payment from the contract directly to different wallets. Any left over amounts will be distributed to the lottery winner.
 
-#### [ 🔭 Learning Solidity ](https://github.com/austintgriffith/scaffold-eth#-learning-solidity)
+## Main System Models: 
+- Everyone will win at least once [To Do for Hackathon]
+- Anyone can win without any gurantee; but you will reduce the chance of the person who won in a round already! 
+- Bidding 
 
-#### [ 📡 Deploy ](https://github.com/austintgriffith/scaffold-eth#-deploy)
 
-#### [ 📺 Frontend](https://github.com/austintgriffith/scaffold-eth#-frontend)
-- [ 🛰 Providers ](https://github.com/austintgriffith/scaffold-eth#-providers)
-- [ 🖇 Hooks ](https://github.com/austintgriffith/scaffold-eth#-hooks)
-- [ 📦 Components ](https://github.com/austintgriffith/scaffold-eth#-components)
-- [ 🖲 UI Library ](https://github.com/austintgriffith/scaffold-eth#-ui-library)
-- [ ⛑ Helpers ](https://github.com/austintgriffith/scaffold-eth#-helpers)
-- [ 🎚 Extras ](https://github.com/austintgriffith/scaffold-eth#-extras)
--  <B> [ 🛳 Ship it! ](https://github.com/austintgriffith/scaffold-eth#-ship-it) </B>
+## Target Audience
+Kitty Party focuses on a group of people with main target audience bringing in other people that has are not familiar or with little knowledge in Crypto. 
+Main target audience: 18~50 years old, female or male who would like to introduce Crypto to their friends or family. 
 
-#### [ 🚩 Challenges ](https://github.com/austintgriffith/scaffold-eth#-challenges)
-- [ 🥩 Staking App](https://github.com/austintgriffith/scaffold-eth/tree/challenge-1-decentralized-staking)
-- [ 🏵 Token Vendor ](https://github.com/austintgriffith/scaffold-eth/tree/challenge-2-token-vendor)
+### User Persona
+- One 22 year old college student wants to add her two cousins, one 31 and another 15 year old. She also managed to convince her mom's friend and her best friend. 
+- Rico, 30 year-old man who is familiar with Cryptocurrency. He has a few friends from university that he would like to re-connect with. He needs a platform where he can invite his friends to do investment in Crypto and gain some profit. 
 
-#### [ 👩‍💻 Examples & Tutorials ](https://github.com/austintgriffith/scaffold-eth#-examples-and-tutorials)
-- [ 🎟 Simple NFT ](https://github.com/austintgriffith/scaffold-eth/tree/simple-nft-example)
+## System Design
 
-#### [ Built with 🏗 scaffold-eth ](https://github.com/austintgriffith/scaffold-eth#-built-with--scaffold-eth)
-- [ 🎨 Nifty.ink ](https://nifty.ink) ([code](https://github.com/austintgriffith/scaffold-eth/tree/nifty-ink-dev))
+### Actors
 
-#### [🌉 Infrastructure ](https://github.com/austintgriffith/scaffold-eth#-infrastructure)
+1. A kitten - A person who participates in the social contract
 
-- [ 🛰 The Graph ](https://github.com/austintgriffith/scaffold-eth#-using-the-graph)
-- [ 🔬 Tenderly ](https://github.com/austintgriffith/scaffold-eth#-using-tenderly)
-- [ 🌐 Etherscan ](https://github.com/austintgriffith/scaffold-eth#-etherscan)
-- [ 🔶 Infura ](https://github.com/austintgriffith/scaffold-eth#-using-infura)
--  🟪 [ Blocknative ](https://github.com/austintgriffith/scaffold-eth#-blocknative)
+2. Kitty Kreator - A person who initiates the social contract
 
-|-   <B> [ 📠 Legacy Content ](https://github.com/austintgriffith/scaffold-eth#-legacy-content) </B> - | - <B> [ 💬 Support Chat ](https://github.com/austintgriffith/scaffold-eth#-support-chat) </B> -|
+3. The kitty contract - A social smart contract that randomly picks one winner every round to send the kitty(pot of money to)
 
+4. System contracts - Other contracts that allow for creation of the ecosystem and maintains various aspects of the application
 
----
+### User Stories [TBC] // Need updated below
 
-[![ethdenvervideo](https://user-images.githubusercontent.com/2653167/109873369-e2c58c00-7c2a-11eb-8adf-0ec4b8dcae1e.png)](https://youtu.be/33gnKe7ttCc?t=477)
+#### U1 Login
 
+U1.1 As a user, I must be able to login via metamask.
 
----
----
----
+U1.2 As a user, the app must ensure I am on the correct network
 
-# 🏃‍♀️ Quick Start
+#### U2 Create Party with a Kitty
 
-required: [Node](https://nodejs.org/dist/latest-v12.x/) plus [Yarn](https://classic.yarnpkg.com/en/docs/install/) and [Git](https://git-scm.com/downloads)
+U2.1 As a Kitty Kreator I must be able to initiate a kitty party
 
+U2.2 As a Kitty Kreator I need to define the rounds(12 months), duration (1 month), amount per round($120), number of people(12)
 
-```bash
-git clone https://github.com/austintgriffith/scaffold-eth.git
+U2.3 As a Kitty Kreator I need to stake an amount that is equivalent to the amount of a single round contribution with one currency (ETH?)
 
-cd scaffold-eth
-```
+U2.4 As a Kitty Kreator I need to be able to get back my stake at the end of 12 months
 
-```bash
+U2.5 As a creator I must be able to invite other kitties to my kitty party
 
-yarn install
+U2.6 As a Kitty Kreator I can acknowledge off chain transaction recieved from a kitty
 
-```
+Additional Enhancement:
 
-```bash
+U2a.1 As a Kitty Kreator I can invite a kitty to kitty party
 
-yarn start
+U2a.2 As a Kitty Kreator I should not be able to initiate the kitty party unless all invited kitties have completed the transactions
 
-```
+#### U3 participate and join a kitty party as a kitty
 
-> in a second terminal window:
+U3.1 _As a kitty in the party I must be able to contribute to the kitty by means of a off chain / on chain transaction to the kitty contract/creator._
 
-```bash
-cd scaffold-eth
-yarn chain
+U3.2 As a kitty I should be able to see my contribution
 
-```
+U3.3 As a kitty I should be able to claim my contribution in crypto/non crypto asset _Is this going to be kept on our side or transferred from the Kitty Kreator? Is it transferred directly to the wallet adddress?_
 
-> in a third terminal window:
+Additional Enhancement:
 
-```bash
-cd scaffold-eth
-yarn deploy
+U3a.1 As a kitty I should be able to accept an invitation from a kitty party
 
-```
+#### U4 As the kitty contract I should be able to do a lottery
 
-🔏 Edit your smart contract `YourContract.sol` in `packages/hardhat/contracts`
+U4.1 As the contract using VRF I should be able to do a lottery and decide the winner.
 
-📝 Edit your frontend `App.jsx` in `packages/react-app/src`
+U4.2 As the contract I should be able to make the transfer in terms of a stablecoin to the winning account
 
-💼 Edit your deployment script `deploy.js` in `packages/hardhat/scripts`
+U4.3 As the contract I must be able to reduce some parameter for the winner so that the same person has a lower probability of winning next time in the next round
 
-📱 Open http://localhost:3000 to see the app
+## Implementation
 
-🏗 scaffold-eth is a hackthon stack for quick product prototyping on Ethereum.
+#### Development Toolset
+In order to leverage on existing infrastructure we will use Polygon's layer 2 network and develop the application in solidity. As far as possible we will _avoid using backend_ systems.
 
-👩‍🔬 This scaffolding leverages state of the art tooling from the ecosystem.
+Database
+-> OrbitDB
 
-🧪 It is a free standing dapp so you can learn by making small changes.
+Storage
+-> IPFS
 
+Frontend
+-> React
 
-> *After installing*, your dev environment should look like this:
+#### Smart Contract Classes [TBC]
+1. Kitty Contract with Random lottery picker
+2. User Registration and DID
+3. Reputation related claims
+4. L2 Bridge related classes
+5. Stablecoin convertor related assets
 
-![image](https://user-images.githubusercontent.com/2653167/109870279-24ecce80-7c27-11eb-91f3-b2c4febac118.png)
+#### Oracle Functions
 
+#### Security
 
-> React dev server, HardHat blockchain, deploy terminal, code IDE, and frontend browser.
+##### Contract Safety
 
-✏️ Make small changes to `YourContract.sol` and watch your app auto update!
+We will make the best use of the hackathon of which we are a part of and also once there is enough funds proportioned to test the security of our contracts we will do an external audit. Before that we will use various analysis software to make sure that we are as safe as possible.
 
+##### Asset Security
 
-🔁 You can `yarn deploy` any time and get a fresh new contract in the frontend:
+For transferring assets for gas fees and such we will make use of a gnosis safe vault between the various early developers.
 
 
-![deploy](https://user-images.githubusercontent.com/2653167/93149199-f8fa8280-f6b2-11ea-9da7-3b26413ec8ab.gif)
+# User Workflow
 
+## User Account (Login/Registration)
+1. User can create an account via private key, MetaMask
+2. User reaches dashboard with the list of Kitty Parties with different statuses.
+   - PENDING: Party is created by the user as Kitty Kreator and waiting for Kitten's to complete the payments. Party is Pending action from Kitten  
+   - STAKING: Party has started and the funds are used to be staked 
+   - AT RISK: Party noted with lower total staking amount as a Kitten did not do any payment from previous round and total staking amount was used up.
+   - HALTED: Party is closed due to no enough staking from the Kitty Kreator
+   - ENDED: Party has ended :D
+  
 
-💵 Each browser has an account in the top right and you can use the faucet (bottom left) to get ⛽️  testnet eth for gas:
+**Under Dashboard**:
 
+-> As a Kitty Kreator, user can select an option to create a Kitty Party
 
-![faucet](https://user-images.githubusercontent.com/2653167/93150077-6c04f880-f6b5-11ea-9ee8-5c646b5b7afc.gif)
+-> As a Kitten, user can see the pending invites 
 
 
+## Kitty Party - Main Flow
 
+**Pre-requisite**: 
+* Kitty Kreators and Kittens own a Crypto wallet
+* Kittens should pass the address to Kitty Kreator in advance
 
-🔨Once you have funds, you can call `setPurpose` on your contract and "write" to the `purpose` storage:
+1. Init Kitty Party; Kitty Kreator starts with basic setting:
+   - Number of Kittens. This is done by specifying the kitten's addresses. This is essentially the **number of rounds**.
+   - Stake Amount. This is the **total** amount per round: This amount will be divided equally for all Kittens.
+   - Staking Duration. This is the time taken for the staking to be done. 
+   - Waiting Time. This is the time given for all Kittens to do **payout** for Party Pending Invites.
+  
+  Note that on system, future enhancemnt can include settings:
+  - User can tweak number of rounds, e.g. to do the party with 2x total of kittens.
+  - QuickSwap Liquidity Pool can be dynamic. This allows users to select different keypairs.
+  - Allow user to select different staking pool, not only QuickSwap.
+  - Allow user to select rewarding system (see the Main System Models)
+  
+2. Kitty Kreator pass in at least the total stake amount for one round. 
+   Kitty Kreator can **topup** with more than total stake amount for a Kitty Party. Why?
+   - To let Kitty Kreator do the initial payment in behalf of other Kitten. **This is Kitten OFF CHAIN transaction support.** Note that Kitty Kreator MUST mark this transaction while doing topup. 
+   - To increase the returns/profits in the party staking. 
+   - To add insurance that Kitty Kreator can cover for any missing Kittens.
 
+3. All kittens need to send the pending amount to be staked for one round on time. **This is Kitten ON CHAIN transaction support.**
+   - Kitten must send correct amount within the specified **Waiting Time**
+   - **MIA Kitten** = Kitten that is missing from 1 round. The Kitten fails to do payment within the Waiting Time. 
+     - Kitty Kreator's funds will be deducted for this Kitten. The Kitten will be **excluded** for the rewarding system for this Round.
+     - Kitty Kreator/Kitten can do payout/topup before the next round starts to keep the party going on. 
+     - If Kitty Kreator/Kitten still fails to do the payment before next round starts, PARTY WILL BE HALTED.
 
-![setp](https://user-images.githubusercontent.com/2653167/93229761-2d625300-f734-11ea-9036-44a75429ef0c.gif)
+4. Once all kittens sent out the pending amount. Contract validates total amount and initiates the staking (QuickSwap) for period of specified *total staking duration*
 
+5. Once round duration expires, the earnings should be withdrawn from QuickSwap and rewards are given to: [REWARDING AMOUNT TBC]
+   - "Random" Kitten of the Round - Keep the money from this Kitty [TBC]
+   - Kitty Kreator
+   - Small Fee to us
+  
+6. Before next round starts, ensure that Kitty Kreator has enough total stake amount.
+   
+7. If total stake amount is enough, round continues by repeating step 3~6 until the group period ends.
 
-Look for the [HardHat](https://hardhat.org) console.log() output in the `yarn chain` terminal:
 
-![image](https://user-images.githubusercontent.com/2653167/93687934-2f534b80-fa7f-11ea-84b2-c0ba99533dc2.png)
 
-> ⚗️ Spend some time tinkering with `YourContract.sol`
+### Sample Scenario - MIA Kitten
 
----
+Kitty Kreator, Total Stake Amount=$50
+5 Kitten; $10 per kitten
 
-===================================================== [⏫ back to the top ⏫](https://github.com/austintgriffith/scaffold-eth#-scaffold-eth)
+**Round 1**
+$50 + $40
+1 Kitten MIA
+**End of Round 1** 
+Give out Rewards: 
+--> Random kitten out of 4 -> [0] got the money
+Do a Check: How much is the Kitty Kreator's Total Stake Amount? 
+--> $40, which is not enough
+Then:
+- Give back to Kitty Kreator ($35), $5 as penalty fee
+- Each Kitten will not be given anything 
 
----
----
+**Round 2 will NOT start.**
 
-# 🔭 Learning Solidity
-
-📕 Read the docs: https://docs.soliditylang.org
-
-📚 Go through each topic from [solidity by example](https://solidity-by-example.org) editing `YourContract.sol` in **🏗 scaffold-eth**
-
-- [Primitive Data Types](https://solidity-by-example.org/primitives/)
-- [Mappings](https://solidity-by-example.org/mapping/)
-- [Structs](https://solidity-by-example.org/structs/)
-- [Modifiers](https://solidity-by-example.org/function-modifier/)
-- [Events](https://solidity-by-example.org/events/)
-- [Inheritance](https://solidity-by-example.org/inheritance/)
-- [Payable](https://solidity-by-example.org/payable/)
-- [Fallback](https://solidity-by-example.org/fallback/)
-
-📧 Learn all the [Solidity globals and units](https://solidity.readthedocs.io/en/v0.6.6/units-and-global-variables.html)
-
-👨‍🏫 Start super simple with a counter: `uint8 public count = 1;`
-
-⬇️ Then a `function dec() public {}` that does a `count = count - 1;`
-
-![image](https://user-images.githubusercontent.com/2653167/93150263-dae25180-f6b5-11ea-94e1-b24ab2a63fa5.png)
-
-
-🔬  What happens when you subtract 1 from 0? Try it out in the app to see what happens!
-
-![underflow](https://user-images.githubusercontent.com/2653167/93688066-46466d80-fa80-11ea-85df-81fbafa46575.gif)
-
-🚽 UNDERFLOW!?! (🚑 [Solidity >0.8.0](https://docs.soliditylang.org/en/v0.8.0/) will catch this!)
-
-🧫 You can iterate and learn as you go. Test your assumptions!
-
-🔐 Global variables like `msg.sender` and `msg.value` are cryptographically backed and can be used to make rules
-
-📝 Keep this [cheat sheet](https://solidity.readthedocs.io/en/v0.7.0/cheatsheet.html?highlight=global#global-variables) handy
-
-⏳ Maybe we could use `block.timestamp` or `block.number` to track time in our contract
-
-🔏 Or maybe keep track of an `address public owner;` then make a rule like `require( msg.sender == owner );` for an important function
-
-🧾 Maybe create a smart contract that keeps track of a `mapping ( address => uint256 ) public balance;`
-
-🏦 It could be like a decentralized bank that you `function deposit() public payable {}` and `withdraw()`
-
-📟 Events are really handy for signaling to the frontend. [Read more about events here.](https://solidity-by-example.org/0.6/events/)
-
-📲 Spend some time in `App.jsx` in `packages/react-app/src` and learn about the 🛰 [Providers](https://github.com/austintgriffith/scaffold-eth#-web3-providers)
-
-⚠️ Big numbers are stored as objects: `formatEther` and `parseEther` (ethers.js) will help with WEI->ETH and ETH->WEI.
-
-🧳 The single page (searchable) [ethers.js docs](https://docs.ethers.io/v5/single-page/) are pretty great too.
-
-🐜 The UI framework `Ant Design` has a [bunch of great components](https://ant.design/components/overview/).
-
-📃 Check the console log for your app to see some extra output from hooks like `useContractReader` and `useEventListener`.
-
-🏗 You'll notice the `<Contract />` component that displays the dynamic form as scaffolding for interacting with your contract.
-
-🔲 Try making a `<Button/>` that calls `writeContracts.YourContract.setPurpose("👋 Hello World")` to explore how your UI might work...
-
-💬 Wrap the call to `writeContracts` with a `tx()` helper that uses BlockNative's [Notify.js](https://www.blocknative.com/notify).
-
-🧬 Next learn about [structs](https://solidity-by-example.org/0.6/structs/) in Solidity.
-
-🗳 Maybe an make an array `YourStructName[] public proposals;` that could call be voted on with `function vote() public {}`
-
-🔭 Your dev environment is perfect for *testing assumptions* and learning by prototyping.
-
-📝 Next learn about the [fallback function](https://solidity-by-example.org/0.6/fallback/)
-
-💸 Maybe add a `receive() external payable {}` so your contract will accept ETH?
-
-🚁 OH! Programming decentralized money! 😎 So rad!
-
----
-
-===================================================== [⏫ back to the top ⏫](https://github.com/austintgriffith/scaffold-eth#-scaffold-eth)
-
----
----
-
-
-# 📡 Deploy
-
-
-🛰 Ready to deploy to a testnet? Change the `defaultNetwork` in `packages/hardhat/hardhat.config.js`
-
-🔐 Generate a deploy account with `yarn generate` and view it with `yarn account`
-
-💵 Fund your deployer account (pro tip: use an [instant wallet](https://instantwallet.io) to send funds to the QR code from `yarn account`)
-
-> Deploy your contract:
-
-```bash
-yarn deploy
-```
-
----
-
-===================================================== [⏫ back to the top ⏫](https://github.com/austintgriffith/scaffold-eth#-scaffold-eth)
-
-
----
----
-# 📺 Frontend
-
-> Edit your frontend `App.jsx` in `packages/react-app/src`
-
-📡 Make sure your `targetNetwork` is the same as 👷‍♀️ HardHat's `defaultNetwork` (where you deployed your contracts).
-
-![image](https://user-images.githubusercontent.com/2653167/110500412-68778a80-80b6-11eb-91bd-194d47d62771.png)
-
-
-🤡 Adjust your debugging settings as needed:
-
-![image](https://user-images.githubusercontent.com/2653167/110499550-95776d80-80b5-11eb-8024-287878b180d5.png)
-
-
----
-
-## 🔏 Providers:
-
-Providers are your connections to different blockchains.
-
-The frontend has three different providers that provide different levels of access to different chains:
-
-`mainnetProvider`: (read only) [Alchemy](https://alchemyapi.io/) or [Infura](https://infura.io/) connection to main [Ethereum](https://ethereum.org/developers/) network (and contracts already deployed like [DAI](https://etherscan.io/address/0x6b175474e89094c44da98b954eedeac495271d0f#code) or [Uniswap](https://etherscan.io/address/0x2a1530c4c41db0b0b2bb646cb5eb1a67b7158667)).
-
-`localProvider`: local [HardHat](https://hardhat.org) accounts, used to read from _your_ contracts (`.env` file points you at testnet or mainnet)
-
-`injectedProvider`: your personal [MetaMask](https://metamask.io/download.html), [WalletConnect](https://walletconnect.org/apps) via [Argent](https://www.argent.xyz/), or other injected wallet (generates [burner-provider](https://www.npmjs.com/package/burner-provider) on page load)
-
-![image](https://user-images.githubusercontent.com/2653167/110499705-bc35a400-80b5-11eb-826d-44815b89296c.png)
-
-
----
-
-## 🖇 Hooks:
-
-![image](https://user-images.githubusercontent.com/2653167/110499834-dcfdf980-80b5-11eb-9d2d-de7046bf5c2b.png)
-
-
-Commonly used Ethereum hooks located in `packages/react-app/src/`:
-
-
-`usePoller(fn, delay)`: runs a function on app load and then on a custom interval
-
-```jsx
-usePoller(() => {
-  //do something cool at start and then every three seconds
-}, 3000);
-```
-
-<br/>
-
-`useBalance(address, provider, [pollTime])`: poll for the balance of an address from a provider
-
-```js
-const localBalance = useBalance(address, localProvider);
-```
-
-<br/>
-
-`useBlockNumber(provider,[pollTime])`: get current block number from a provider
-
-```js
-const blockNumber = useBlockNumber(props.provider);
-```
-
-<br/>
-
-`useGasPrice([speed])`: gets current "fast" price from [ethgasstation](https://ethgasstation.info)
-
-```js
-const gasPrice = useGasPrice();
-```
-
-<br/>
-
-`useExchangePrice(mainnetProvider, [pollTime])`: gets current price of Ethereum on the Uniswap exchange
-
-```js
-const price = useExchangePrice(mainnetProvider);
-```
-
-<br/>
-
-`useContractLoader(provider)`: loads your smart contract interface
-
-```js
-const readContracts = useContractLoader(localProvider);
-const writeContracts = useContractLoader(injectedProvider);
-```
-
-<br/>
-
-`useContractReader(contracts, contractName, variableName, [pollTime])`: reads a variable from your contract and keeps it in the state
-
-```js
-const title = useContractReader(props.readContracts, contractName, "title");
-const owner = useContractReader(props.readContracts, contractName, "owner");
-```
-
-<br/>
-
-`useEventListener(contracts, contractName, eventName, [provider], [startBlock])`: listens for events from a smart contract and keeps them in the state
-
-```js
-const ownerUpdates = useEventListener(
-  readContracts,
-  contractName,
-  "UpdateOwner",
-  props.localProvider,
-  1
-);
-```
-
----
-
-## 📦 Components:
-
-![image](https://user-images.githubusercontent.com/2653167/110500019-04ed5d00-80b6-11eb-97a4-74068fa90846.png)
-
-
-Your commonly used React Ethereum components located in `packages/react-app/src/`:
-
-<br/>
-
-📬 `<Address />`: A simple display for an Ethereum address that uses a [Blockie](https://www.npmjs.com/package/ethereum-blockies), lets you copy, and links to [Etherescan](https://etherscan.io/).
-
-```jsx
-  <Address value={address} />
-  <Address value={address} size="short" />
-  <Address value={address} size="long" blockexplorer="https://blockscout.com/poa/xdai/address/"/>
-  <Address value={address} ensProvider={mainnetProvider}/>
-```
-
-![ensaddress](https://user-images.githubusercontent.com/2653167/80522487-e375fd80-8949-11ea-84fd-0de3eab5cd03.gif)
-
-<br/>
-
-🖋 `<AddressInput />`: An input box you control with useState for an Ethereum address that uses a [Blockie](https://www.npmjs.com/package/ethereum-blockies) and ENS lookup/display.
-
-```jsx
-  const [ address, setAddress ] = useState("")
-  <AddressInput
-    value={address}
-    ensProvider={props.ensProvider}
-    onChange={(address)=>{
-      setAddress(address)
-    }}
-  />
-```
-
-<br/>
-
-💵 `<Balance />`: Displays the balance of an address in either dollars or decimal.
-
-```jsx
-<Balance
-  address={address}
-  provider={injectedProvider}
-  dollarMultiplier={price}
-/>
-```
-
-![balance](https://user-images.githubusercontent.com/2653167/80522919-86c71280-894a-11ea-8f61-70bac7a72106.gif)
-
-<br/>
-
-<br/>
-
-👤 `<Account />`: Allows your users to start with an Ethereum address on page load but upgrade to a more secure, injected provider, using [Web3Modal](https://web3modal.com/). It will track your `address` and `localProvider` in your app's state:
-
-```jsx
-const [address, setAddress] = useState();
-const [injectedProvider, setInjectedProvider] = useState();
-const price = useExchangePrice(mainnetProvider);
-```
-
-```jsx
-<Account
-  address={address}
-  setAddress={setAddress}
-  localProvider={localProvider}
-  injectedProvider={injectedProvider}
-  setInjectedProvider={setInjectedProvider}
-  dollarMultiplier={price}
-/>
-```
-
-![account](https://user-images.githubusercontent.com/2653167/80527048-fdffa500-8950-11ea-9a0f-576be87e4368.gif)
-
-> 💡 **Notice**: the `<Account />` component will call `setAddress` and `setInjectedProvider` for you.
-
----
-
-===================================================== [⏫ back to the top ⏫](https://github.com/austintgriffith/scaffold-eth#-scaffold-eth)
-
----
-
-## 🖲 UI Library
-
-🐜 [Ant.design](https://ant.design/components/button/) is a fantastic UI library with components like the [grids](https://ant.design/components/grid/), [menus](https://ant.design/components/menu/), [dates](https://ant.design/components/date-picker/), [times](https://ant.design/components/time-picker/), [buttons](https://ant.design/components/button/), etc.
-
----
-
-## ⛑ Helpers:
-
-`Transactor`: The transactor returns a `tx()` function to make running and tracking transactions as simple and standardized as possible. We will bring in [BlockNative's Notify](https://www.blocknative.com/notify) library to track our testnet and mainnet transactions.
-
-```js
-const tx = Transactor(props.injectedProvider, props.gasPrice);
-```
-
-Then you can use the `tx()` function to send funds and write to your smart contracts:
-
-```js
-tx({
-  to: readContracts[contractName].address,
-  value: parseEther("0.001"),
-});
-```
-
-```js
-tx(writeContracts["SmartContractWallet"].updateOwner(newOwner));
-```
-
-> ☢️ **Warning**: You will need to update the configuration for `react-app/src/helpers/Transactor.js` to use _your_ [BlockNative dappId](https://www.blocknative.com/notify)
-
----
-
-## 🎚 Extras:
-
-🔑 Create wallet links to your app with `yarn wallet` and `yarn fundedwallet`
-
-⬇️ Installing a new package to your frontend? You need to `cd packages/react-app` and then `yarn add PACKAGE`
-
-⬇️ Installing a new package to your backend? You need to `cd packages/harthat` and then `yarn add PACKAGE`
-
----
-
-## 🛳 Ship it!
-
-You can deploy your app with:
-
-```bash
-
-# packge up the static site:
-
-yarn build
-
-# ship it!
-
-yarn surge
-
-OR
-
-yarn s3
-
-OR
-
-yarn ipfs
-```
-
-🚀 Good luck!
-
----
-
-===================================================== [⏫ back to the top ⏫](https://github.com/austintgriffith/scaffold-eth#-scaffold-eth)
-
----
----
-
-## 🚩 Challenges
-
-1. [ 🥩 Decentralized Staking App ](https://github.com/austintgriffith/scaffold-eth/tree/challenge-1-decentralized-staking)
-
-2. [  🏵 Token Vendor ](https://github.com/austintgriffith/scaffold-eth/tree/challenge-2-token-vendor)
-
----
-
-===================================================== [⏫ back to the top ⏫](https://github.com/austintgriffith/scaffold-eth#-scaffold-eth)
-
----
----
-
-## 📡 Examples and Tutorials
-
-(todo: insert all the cool active branches)
-
-
-| <M> [ tenderly ](https://github.com/austintgriffith/scaffold-eth/tree/tenderly) |
-| --- |
-| [ simple-nft-example ](https://github.com/austintgriffith/scaffold-eth/tree/simple-nft-example) |
-
-
-^^^ ⛏ <b>PR</b> your 🏗 scaffold-eth branch!!! 🙏🙏🙏 ^^^
-
----
-
-===================================================== [⏫ back to the top ⏫](https://github.com/austintgriffith/scaffold-eth#-scaffold-eth)
-
----
----
-
-# 🔨 Built with 🏗 scaffold-eth:
-
-[<H3>👩‍🎨 Nifty Ink</H3>](https://nifty.ink)
-
-Paintings come to life as you "ink" new creations and trade them on Ethereum. A deep dive into 🖼 NFTs, 🐳 OpenSea, 🖍 react-canvas-draw, 🎨 react-color, and 🛬 onboarding user experience.
-
-🏃‍♂️ SpeedRun 📹 (TODO)
-
-[💾 Source Code ](https://github.com/austintgriffith/scaffold-eth/tree/nifty-ink-dev)
-
-
-[<H3>🧙‍♂️ Instant Wallet</H3>](https://instantwallet.io)
-
-An instant wallet running on xDAI insired by [xdai.io](https://xdai.io).
-
-
-[💾 Source Code ](https://github.com/austintgriffith/scaffold-eth/tree/instantwallet-dev-session)
-
-
-[<H3>🗳 Personal Token Voting</H3>](https://medium.com/@austin_48503/personal-token-voting-73b44a598d8e)
-
-Poll your holders! Build an example emoji voting system with 🏗 <b>scaffold-eth</b>. 🔏 Cryptographically signed votes but tracked off-chain with 📡 Zapier and 📑 Google Sheets.
-
-[🏃‍♂️ SpeedRun 📹 ](https://youtu.be/Q5zgxcQtwWI)
-
-[💾 Source Code ](https://github.com/austintgriffith/scaffold-eth/tree/emoji-vote-dev)
-
-
-^^^ ⛏ PLEASE <b>PR</b> your 🏗 scaffold-eth project in above!!! 🙏🙏🙏 ^^^
-
----
-===================================================== [⏫ back to the top ⏫](https://github.com/austintgriffith/scaffold-eth#-scaffold-eth)
-
----
----
-
-# 📟 Infrastructure
-
----
-
-## 🛰 Using The Graph
-
-[![thegraphplayvideo](https://user-images.githubusercontent.com/2653167/101052782-4664ee00-3544-11eb-8805-887ad4d1406e.png)
-](https://youtu.be/T5ylzOTkn-Q)
-
-[ 🎥 here is another Graph speed run tutorial video ](https://youtu.be/T5ylzOTkn-Q)
-
-
----
-
-## 🔬 Using Tenderly
-[Tenderly](https://tenderly.co) is a platform for monitoring, alerting and trouble-shooting smart contracts. They also have a hardhat plugin and CLI tool that can be helpful for local development!
-
-Hardhat Tenderly [announcement blog](https://blog.tenderly.co/level-up-your-smart-contract-productivity-using-hardhat-and-tenderly/) for reference.
-
-
-### Verifying contracts on Tenderly
-scaffold-eth includes the hardhat-tenderly plugin. When deploying to any of the following networks:
-```
-["kovan","goerli","mainnet","rinkeby","ropsten","matic","mumbai","xDai","POA"]
-```
-You can verify contracts as part of the `deploy.js` script. We have created a `tenderlyVerify()` helper function, which takes your contract name and its deployed address:
-```
-await tenderlyVerify(
-  {contractName: "YourContract",
-   contractAddress: yourContract.address
-})
-```
-Make sure your target network is present in the hardhat networks config, then either update the default network in `hardhat.config.js` to your network of choice or run:
-```
-yarn deploy --network NETWORK_OF_CHOICE
-```
-Once verified, they will then be available to view on Tenderly!
-
-
-
-[![TenderlyRun](https://user-images.githubusercontent.com/2653167/110502199-38c98200-80b8-11eb-8d79-a98bb1f39617.png)](https://www.youtube.com/watch?v=c04rrld1IiE&t=47s)
-
-
-#### Exporting local Transactions
-One of Tenderly's best features for builders is the ability to [upload local transactions](https://dashboard.tenderly.co/tx/main/0xb8f28a9cace2bdf6d10809b477c9c83e81ce1a1b2f75f35ddd19690bbc6612aa/local-transactions) so that you can use all of Tenderly's tools for analysis and debugging. You will need to create a [tenderly account](https://tenderly.co/) if you haven't already.
-
-Exporting local transactions can be done using the [Tenderly CLI](https://github.com/tenderly/tenderly-cli). Installing the Tenderly CLI:
-```
-brew tap tenderly/tenderly
-brew install tenderly
-```
-_See alternative installation steps [here](https://github.com/tenderly/tenderly-cli#installation)_
-
-You need to log in and configure for your local chain (including any forking information) - this can be done from any directory, but it probably makes sense to do under `/packages/hardhat` to ensure that local contracts are also uploaded with the local transaction (see more below!)
-```
-cd packages/hardhat
-tenderly login
-tenderly export init
-```
-You can then take transaction hashes from your local chain and run the following from the `packages/hardhat` directory:
-```
-tenderly export <transactionHash>
-```
-Which will upload them to tenderly.co/dashboard!
-
-Tenderly also allows users to debug smart contracts deployed to a local fork of some network (see `yarn fork`). To let Tenderly know that we are dealing with a fork, run the following command:
-
-```
-tenderly export init
-```
-
-CLI will ask you for your network's name and whether you are forking a public network. After choosing the right fork, your exporting will look something like this:
-
-```
-tenderly export <transactionHash> --export-network <networkName>
-```
-
-Note that `tenderly.yaml` file stores information about all networks that you initialized for exporting transactions. There can be multiple of them in a single file. You only need the `--export-network` if you have more than one network in your tenderly.yaml config!
-
-**A quick note on local contracts:** if your local contracts are persisted in a place that Tenderly can find them, then they will also be uploaded as part of the local transaction `export`, which is one of the freshest features! We have added a call to `tenderly.persistArtifacts()` as part of the scaffold-eth deploy() script, which stores the contracts & meta-information in a `deployments` folder, so this should work out of the box.
-
-Another pitfall when dealing with a local network (fork or not) is that you will not see the transaction hash if it fails. This happens because the hardhat detects an error while `eth_estimateGas` is executed. To prevent such behaviour, you can skip this estimation by passing a `gasLimit` override when making a call - an example of this is demonstrated in the `FunctionForm.jsx` file of the Contract component:
-```
-let overrides = {}
-// Uncomment the next line if you want to skip the gas estimation for each transaction
-// overrides.gasLimit = hexlify(1200000);
-const returned = await tx(contractFunction(...args, overrides));
-```
-
-**One gotcha** - Tenderly does not (currently) support yarn workspaces, so any imported solidity contracts need to be local to `packages/hardhat` for your contracts to be exported. You can achieve this by using [`nohoist`](https://classic.yarnpkg.com/blog/2018/02/15/nohoist/) - this has been done for `hardhat` so that we can export `console.sol` - see the top-level `package.json` to see how!
-```
-"workspaces": {
-  "packages": [
-    "packages/*"
-  ],
-  "nohoist": [
-    "**/hardhat",
-    "**/hardhat/**"
-  ]
-}
-```
-
-
----
-
-## 🌐 Etherscan
-Hardhat has a truly wonderful [`hardhat-etherscan` plugin](https://www.npmjs.com/package/@nomiclabs/hardhat-etherscan) that takes care of contract verification after deployment. You need to add the following to your `hardhat.config.js` imports:
-```
-require("@nomiclabs/hardhat-etherscan");
-```
-Then add your etherscan API key to the module.exports:
-```
-etherscan: {
-  // Your API key for Etherscan
-  // Obtain one at https://etherscan.io/
-  apiKey: "YOUR-API-KEY-HERE"
-}
-```
-Verifying is simple, assuming you are verifying a contract that you have just deployed from your hardhat setup - you just need to run the verify script, passing constructor arguments as an array if necessary (there is an example commented out in the `deploy.js`):
-```
-await run("verify:verify", {
-  address: yourContract.address,
-  // constructorArguments: args // If your contract has constructor arguments, you can pass them as an array
-})
-```
-You only have to pass the contract because the plugin figures out which of the locally compiled contracts is the right one to verify. Pretty cool stuff!
-
----
-
-## 🔶 Using Infura
-
-You will need to update the `constants.js` in `packages/react-app/src` with [your own Infura ID](https://infura.io).
-
----
-
-## 🟪 Blocknative
-
-> update the `BLOCKNATIVE_DAPPID` in `packages/react-app/src/constants.js` with [your own Blocknative DappID](https://docs.blocknative.com/notify)
-
----
-===================================================== [⏫ back to the top ⏫](https://github.com/austintgriffith/scaffold-eth#-scaffold-eth)
-
----
----
-
-
-## 📠 Legacy Content
-
-
-[<h5>🧫 Building on Ethereum in 2020 (research for this repo)</h5>  ](https://medium.com/@austin_48503/building-on-ethereum-in-2020-dca52eda5f00)
-
-
-[![splash](https://user-images.githubusercontent.com/2653167/88085723-7ab2b180-cb43-11ea-832d-8db6efcbdc02.png)](https://www.youtube.com/watch?v=ShJZf5lsXiM&feature=youtu.be&t=19)
-
----
-
-[<H6>Tutorial 1: 🛠 Programming Decentralized Money</H6>](https://medium.com/@austin_48503/programming-decentralized-money-300bacec3a4f)
-
-Learn the basics of 🏗 <b>scaffold-eth</b> and building on <b>Ethereum</b>. 👷‍♂️ HardHat, 📦 create-eth-app, 🔥 hot reloading smart contracts, 🛰 providers, 🔗 hooks, 🎛 components, and building a decentralized application.
-[🎥 Guided Tutorial](https://youtu.be/7rq3TPL-tgI)
-
----
-
-<H6>Tutorial 2: 🏵 The Token</H6>
-
-Learn about tokens. [coming soon] What is a token? Why is it cool? How can I deploy one? Exotic mechanisms? (todo)
-
----
-
-[<H6>Tutorial 3: ⚖️ Minimum Viable Decentralized Exchange</H6>](https://medium.com/@austin_48503/%EF%B8%8F-minimum-viable-exchange-d84f30bd0c90)
-
-Learn the basics of Automated Market Makers like 🦄 Uniswap. Learn how 💰Reserves affect the 📉 price, ⚖️ trading, and 💦 slippage from low liquidity.
-
-[🏃‍♀️ SpeedRun  📹](https://youtu.be/eP5w6Ger1EQ)
-
----
-
-[<H6>Tutorial 4: 🚀 Connecting ETH to IPFS</H6>](https://medium.com/@austin_48503/tl-dr-scaffold-eth-ipfs-20fa35b11c35)
-
-Build a simple IPFS application in 🏗 <b>scaffold-eth</b> to learn more about distributed file storage and content addressing.
-  [🎥 Live Tutorial](https://youtu.be/vqrLr5eOjLo?t=342)
-
----
-
-<H6>Tutorial 5: ⛽️GSN and Meta Transactions</H6>
-
-Learn about to provide your users with better UX by abstracting away gas fees and blockchain mechanics.  (todo)
-
-
----
-
-
-[<H6>Tutorial 6: 🛰 Decentralized Deployment</H6>](https://medium.com/@austin_48503/decentralized-deployment-7d975c9d5016)
-
-Learn how to deploy your smart contract to a production blockchain. Then deploy your applicaton to Surge, S3, and IPFS. Finally, register an ENS and point it at the decentralized content!  [🎥 Live Tutorial](https://youtu.be/vqrLr5eOjLo?t=1350)
-
----
-
-
-## 💬 Support Chat
-
-Join the telegram [support chat 💬](https://t.me/joinchat/KByvmRe5wkR-8F_zz6AjpA)  to ask questions and find others building with 🏗 scaffold-eth!
-
----
-
-===================================================== [⏫ back to the top ⏫](https://github.com/austintgriffith/scaffold-eth#-scaffold-eth)
-
----
+Conclusion, HALTED PARTY conditions:
+- Round is closing and completed
+- Kitty Kreator has no enough total stake amount
