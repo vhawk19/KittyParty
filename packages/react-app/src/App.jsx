@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import "antd/dist/antd.css";
 import { JsonRpcProvider, Web3Provider } from "@ethersproject/providers";
 import "./App.css";
-import { Row, Col, Button, Menu, Alert, Switch as SwitchD } from "antd";
+import { Row, Col, Button, Menu, Alert } from "antd";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import { useUserAddress } from "eth-hooks";
@@ -303,6 +303,10 @@ function App(props) {
               writeContracts={writeContracts}
               readContracts={readContracts}
               winner={winner}
+              web3Modal={web3Modal}
+              loadWeb3Modal={loadWeb3Modal}
+              logoutOfWeb3Modal={logoutOfWeb3Modal}
+              blockExplorer={blockExplorer}
               // setPurposeEvents={setPurposeEvents}
             />
           </Route>
@@ -329,7 +333,7 @@ function App(props) {
 
       <ThemeSwitch />
 
-      {/* 👨‍💼 Your account is in the top right with a wallet at connect options */}
+      {/* 👨‍💼 Leaving the main account connector here for use in contract api */}
       <div style={{ position: "fixed", textAlign: "right", right: 0, top: 0, padding: 10 }}>
         <Account
           address={address}
@@ -354,20 +358,6 @@ function App(props) {
 
           <Col span={8} style={{ textAlign: "center", opacity: 0.8 }}>
             <GasGauge gasPrice={gasPrice} />
-          </Col>
-          <Col span={8} style={{ textAlign: "center", opacity: 1 }}>
-            <Button
-              onClick={() => {
-                window.open("https://t.me/joinchat/KByvmRe5wkR-8F_zz6AjpA");
-              }}
-              size="large"
-              shape="round"
-            >
-              <span style={{ marginRight: 8 }} role="img" aria-label="support">
-                💬
-              </span>
-              Support
-            </Button>
           </Col>
         </Row>
 
