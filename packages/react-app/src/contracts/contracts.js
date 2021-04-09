@@ -1,1 +1,1 @@
-module.exports = ["LotteryWinner"];
+module.exports = ["KittyParty"];

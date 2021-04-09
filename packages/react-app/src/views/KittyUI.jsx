@@ -3,7 +3,7 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, useRouteMatch, Switch, Redirect } from "react-router-dom";
 import { Button, List} from "antd";
-import { Address, CreateRoom, Account} from "../components";
+import { Address, CreateRoom, PageDetails, Account} from "../components";
 
 export default function KittyUI({
   winner,
@@ -59,22 +59,22 @@ export default function KittyUI({
 
      <Router>
         <Switch>
-        <PrivateRoute path={`${path}/:create-room`}>
+        {/* <PrivateRoute path={`${path}/:create-room`}>
             <CreateRoom 
             tx={tx} 
             writeContracts={writeContracts} 
             readContracts={readContracts}></CreateRoom>
-          </PrivateRoute>
-          <PrivateRoute path={`${path}/:dashboard`}>
+          </PrivateRoute> */}
+          <PrivateRoute path={`${path}/dashboard`}>
             Dashboard
-            <CreateRoom 
+            <PageDetails 
             tx={tx} 
             writeContracts={writeContracts} 
-            readContracts={readContracts}></CreateRoom>
+            readContracts={readContracts}></PageDetails>
           </PrivateRoute>
           <Route path="/kittyui">
           {
-          web3Modal.cachedProvider ? <Redirect to={`${path}/:dashboard`} /> :  <Account
+          web3Modal.cachedProvider ? <Redirect to={`${path}/dashboard`} /> :  <Account
           address={address}
           localProvider={localProvider}
           userProvider={userProvider}
