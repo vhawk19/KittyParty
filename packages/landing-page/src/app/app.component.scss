@@ -34,7 +34,6 @@
   flex-direction: column;
   margin-top: 100px;
   max-width: 1250px;
-  min-height: calc(100vh - 148px);
   padding: 50px 100px;
 }
 
@@ -114,16 +113,18 @@
     font-size: 1.2rem;
     letter-spacing: 0.1rem;
     line-height: 1.5rem;
-    margin-left: 30px;
     margin-top: 20px;
   }
 }
 
 .app-footer {
+  display: flex;
   font-size: 1rem;
   font-style: initial;
   font-weight: 600;
+  justify-content: center;
   line-height: 3rem;
+  width: 100%;
 }
 
 @media (max-width: 1300px) {
