@@ -1,0 +1,21 @@
+@import '~@angular/material/_theming';
+
+$config: mat-typography-config(
+  $font-family: 'Open Sans',
+  $input: mat-typography-level(.8rem, 1.2, 300)
+);
+
+@include mat-core($config);
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
