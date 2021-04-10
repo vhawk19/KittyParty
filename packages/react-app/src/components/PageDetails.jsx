@@ -14,7 +14,14 @@ import {
   Table,
   Tag,
 } from "antd";
+
 import { MinusCircleOutlined, PlusOutlined, ApartmentOutlined, SaveTwoTone } from "@ant-design/icons";
+import { formatUnits } from "@ethersproject/units";
+
+import tryToDisplay from "./Contract/utils";
+
+import { useContractReader } from "../hooks";
+
 import AddressInput from "./AddressInput";
 
 const { Text } = Typography;
@@ -60,21 +67,68 @@ export default function PageDetails(props) {
       },
     });
   };
+  // console.log("🤗 status:", props.readContracts);
 
-  const itemData = ["Round 1 out of 5"];
+  /**
+   * Contract related variable declaration and save
+   *
+   */
+  const KittyPartyState = Object.freeze({
+    Verification: 0,
+    Collection: 1,
+    Staking: 2,
+    Payout: 3,
+    Completed: 4,
+    Trap: 5,
+  });
 
+  const KittyPartyAction = Object.freeze({
+    "Please wait for verification!": 0,
+    "Please click pay pending amount and pay your kitty 💰. If already paid please wait for others!": 1,
+    "Staking in progress, wait till status changes": 2,
+    "The winner has been decided! ": 3,
+  });
+
+  let currentRound = useContractReader(props.readContracts, "KittyParty", "currentRound");
+  currentRound = tryToDisplay(currentRound || 0) + 1;
+
+  let amountPerRound = useContractReader(props.readContracts, "KittyParty", "amountPerRound");
+  amountPerRound = tryToDisplay(amountPerRound || 0);
+  const amountPerRoundDisplay = formatUnits(amountPerRound, "ether");
+
+  let UniBalance = useContractReader(props.readContracts, "KittyParty", "checkUniBalance");
+  UniBalance = formatUnits(tryToDisplay(UniBalance || 0), "ether");
+
+  const KittyPartyCurrentState = useContractReader(props.readContracts, "KittyParty", "getStatus");
+  const getStatus = value => {
+    return Object.keys(KittyPartyState).find(key => KittyPartyState[key] === value);
+  };
+  const currentStatus = getStatus(KittyPartyCurrentState);
+  const getNextAction = value => {
+    return Object.keys(KittyPartyAction).find(key => KittyPartyAction[key] === value);
+  };
+  const nextAction = getNextAction(KittyPartyCurrentState);
+
+  let noOfMembers = useContractReader(props.readContracts, "KittyParty", "getLength");
+  noOfMembers = noOfMembers > 100000 ? 0 : noOfMembers;
+  const itemData = ["Round " + currentRound + " out of - " + noOfMembers];
+
+  let currentBalance = useContractReader(props.readContracts, "KittyParty", "getBalance", [props.address]);
+  currentBalance = tryToDisplay(currentBalance || 0);
+  const currentBalanceDisplay = formatUnits(currentBalance, "ether");
+  const isPendingPayment = () => {
+    return KittyPartyCurrentState === 1 && amountPerRound > currentBalance;
+  };
+
+  const isPendingPaymentFlag = isPendingPayment();
+
+  console.log("my address --- ", currentBalance);
   const data = [
     {
       title: "Ant Design Title 1",
     },
     {
       title: "Ant Design Title 2",
-    },
-    {
-      title: "Ant Design Title 3",
-    },
-    {
-      title: "Ant Design Title 4",
     },
   ];
 
@@ -92,28 +146,19 @@ export default function PageDetails(props) {
       render: tags => (
         <>
           {tags.map(tag => {
-            let color = tag.length > 5 ? "geekblue" : "green";
-            if ((tag === "Staking") & (typeof tag !== "number")) {
-              color = "volcano";
+            if (typeof tag !== "number") {
+              const color = "green";
+              // tag === "Staking" ? (color = "volcano") : null;
+
               return (
                 <Tag color={color} key={tag}>
-                  {tag.toUpperCase()}
+                  {tag}
                 </Tag>
               );
             }
-            if (typeof tag !== "number") {
-              return (
-                <Text color={color} key={tag}>
-                  {tag}
-                </Text>
-              );
-            }
+
             if (typeof tag === "number") {
-              return (
-                <Text color={color} key={tag}>
-                  {tag}
-                </Text>
-              );
+              return <Text key={tag}>{tag}</Text>;
             }
           })}
         </>
@@ -125,77 +170,74 @@ export default function PageDetails(props) {
     {
       key: "1",
       name: "Status",
-      tags: ["Staking"],
+      tags: [currentStatus],
     },
     {
       key: "2",
-      name: "Stake Value",
-      tags: [100],
+      name: "Amount Per Round",
+      tags: [amountPerRoundDisplay],
     },
     {
       key: "3",
-      name: "Total Stake Duration",
-      tags: ["30 Days"],
+      name: "Stake Token Value",
+      tags: [UniBalance],
+    },
+    {
+      key: "4",
+      name: "Current Balance",
+      tags: [currentBalanceDisplay],
     },
   ];
 
-  const [form] = Form.useForm();
+  // const [form] = Form.useForm();
 
-  const handleChange = () => {
-    form.setFieldsValue({ sights: [] });
-  };
+  // const handleChange = () => {
+  //   form.setFieldsValue({ sights: [] });
+  // };
 
-  const onFinish = values => {
-    console.log("Values of form:", props.tx, values.kittens[0].walletAddress);
-    // for now call a dummy contract and upon success call the notification with a success/fail message.
-
-    values.kittens.map(addressObject => {
-      console.log("Wallet Addresses", addressObject.walletAddress);
-      try {
-        props.tx(props.writeContracts.LotteryWinner.add(addressObject.walletAddress));
-        openNotification("Adding Kitten", "Adding Kitten with address :" + addressObject.walletAddress);
-      } catch (e) {
-        openNotification("Error", e);
-      }
-      return true;
-    });
-    // props.tx(props.writeContracts.LotteryWinner.add(values.kittens[0].walletAddress));
+  const makePayment = values => {
+    try {
+      console.log("transaction", props.tx);
+      props.tx(props.writeContracts.KittyParty.depositAmount(amountPerRound));
+      openNotification(
+        "Deposit Initiated",
+        "Deposit initiated for " + amountPerRoundDisplay + " from your address" + props.address,
+      );
+    } catch (e) {
+      openNotification("Error", e);
+    }
+    return true;
     console.log("called tx");
   };
-  const { Option } = Select;
+  // const { Option } = Select;
 
   return (
     <div>
-      <Form form={form} name="dynamic_form_nest_item" onFinish={onFinish} autoComplete="off">
-        <Card title="Kitty Party Info">
-          <Table columns={columns} dataSource={tableData} showHeader={false} pagination={false} />
-
-          <Divider />
-        </Card>
-        <div style={{ margin: "auto", marginTop: 32, paddingBottom: 32 }}>
-          <h2 />
-          <List
-            dataSource={itemData}
-            bordered
-            // dataSource={setPurposeEvents}
-            renderItem={item => {
-              return (
-                <List.Item>
-                  <List.Item.Meta
-                    title={<a href="https://ant.design">{item}</a>}
-                    description="Staking will finish in 8 days!"
-                  />
-                </List.Item>
-              );
-            }}
-          />
-        </div>
-        <Form.Item>
-          <Button type="primary" htmlType="submit" block>
-            Pay Pending Amount <ApartmentOutlined />
-          </Button>
-        </Form.Item>
-      </Form>
+      {/* <Form form={form} name="dynamic_form_nest_item" onFinish={onFinish} autoComplete="off"> */}
+      <Card title="">
+        <Table columns={columns} dataSource={tableData} showHeader={false} pagination={false} />
+      </Card>
+      <div style={{ margin: "auto", marginTop: 32, paddingBottom: 32 }}>
+        <h2 />
+        <List
+          dataSource={itemData}
+          bordered
+          // dataSource={setPurposeEvents}
+          renderItem={item => {
+            return (
+              <List.Item>
+                <List.Item.Meta title={<p>{item}</p>} description={nextAction} />
+              </List.Item>
+            );
+          }}
+        />
+      </div>
+      {/* <Form.Item> */}
+      <Button type="primary" htmlType="submit" onClick={() => makePayment()} block disabled={!isPendingPaymentFlag}>
+        Pay Pending Amount <ApartmentOutlined />
+      </Button>
+      {/* </Form.Item> */}
+      {/* </Form> */}
     </div>
   );
 }

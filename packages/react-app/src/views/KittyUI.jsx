@@ -6,7 +6,6 @@ import { Button, List} from "antd";
 import { Address, CreateRoom, PageDetails, Account} from "../components";
 
 export default function KittyUI({
-  winner,
   address,
   mainnetProvider,
   userProvider,
@@ -56,23 +55,10 @@ export default function KittyUI({
   return (
     <div>
       <div style={{ border: "1px solid #cccccc", padding: 16, width: 400, margin: "auto", marginTop: 64 }}>
-
+      {/* web3Modal.cachedProvider: {web3Modal.cachedProvider} */}
      <Router>
         <Switch>
-        {/* <PrivateRoute path={`${path}/:create-room`}>
-            <CreateRoom 
-            tx={tx} 
-            writeContracts={writeContracts} 
-            readContracts={readContracts}></CreateRoom>
-          </PrivateRoute> */}
-          <PrivateRoute path={`${path}/dashboard`}>
-            Dashboard
-            <PageDetails 
-            tx={tx} 
-            writeContracts={writeContracts} 
-            readContracts={readContracts}></PageDetails>
-          </PrivateRoute>
-          <Route path="/kittyui">
+        {/* <Route path="/kittyui">
           {
           web3Modal.cachedProvider ? <Redirect to={`${path}/dashboard`} /> :  <Account
           address={address}
@@ -86,14 +72,23 @@ export default function KittyUI({
           blockExplorer={blockExplorer}
         />}
        
-          </Route>
-          <Route path="/kittyui/create-room">
-           TEST
-            {/* <CreateRoom 
+          </Route> */}
+          <Route path={`/kittyui`}>
+            Kitty Party Details
+            <PageDetails 
+            address={address}
             tx={tx} 
             writeContracts={writeContracts} 
-            readContracts={readContracts}></CreateRoom> */}
+            readContracts={readContracts}></PageDetails>
           </Route>
+         {/* <Route path={`/kittyui`}>
+            <CreateRoom 
+            tx={tx} 
+            writeContracts={writeContracts} 
+            readContracts={readContracts}></CreateRoom>
+          </Route> */}
+        
+          
         </Switch>
         </Router>
 

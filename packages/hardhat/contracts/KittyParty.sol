@@ -103,6 +103,11 @@ contract KittyParty is VRFConsumerBase {
     }
 
 
+//get the current status of the rounds
+function getStatus() public view returns (KittyPartyState){
+    return currentState;
+}
+
 //Used to initialize the contract, the minimal info required for the contract to function
 // requires a list of member addresses, the first addres in the member list should be the address  of the kitty kreator
 // the number of rounds would be memberlist length -1
@@ -145,6 +150,13 @@ contract KittyParty is VRFConsumerBase {
         return memberList.index[ad];
     }
 
+    function isKittyKreator(address candidateKreator) public returns (bool) {
+        if(
+            getValueAt(0) == candidateKreator
+            ) return true;
+            return false;
+    }
+
     function isKittyPartyActive() public returns (bool) {
         if (
             currentState == KittyPartyState.Trap ||
@@ -153,8 +165,6 @@ contract KittyParty is VRFConsumerBase {
         return true;
     }
     
-    
-
     function deposit() public payable {
         require(
             memberList.exists[msg.sender],
@@ -163,16 +173,24 @@ contract KittyParty is VRFConsumerBase {
         memberList.balance[msg.sender] += msg.value;
         emit Deposit(msg.sender, msg.value);
     }
-    
+
     function depositAmount(uint256 amount) public payable {
-        
         require(
             memberList.exists[msg.sender],
             "User not registered with the kitty party contract, kindly check with your kitty kreator"
         );
-        memberList.balance[msg.sender] += msg.value;
-        emit Deposit(msg.sender, msg.value);
-    } 
+        memberList.balance[msg.sender] += amount;
+        emit Deposit(msg.sender, amount);
+    }
+
+    function depositAmountOnBehalfOfKitten(uint256 amount, address kitten) public payable {        
+        require(
+            isKittyKreator(msg.sender),
+            "You need to be the kitty kreator to deposit on behalf of a kitten"
+        );
+        memberList.balance[kitten] += msg.value;
+        emit Deposit(kitten, msg.value);
+    }
 
     function withdraw(uint256 amount) public {
         uint256 currentBalance = memberList.balance[msg.sender];
