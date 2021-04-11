@@ -83,7 +83,7 @@ export default function PageDetails(props) {
   });
 
   const KittyPartyAction = Object.freeze({
-    "Please wait for verification!": 0,
+    "Party has not yet started! Please wait for verification or create a new party!": 0,
     "Please click pay pending amount and pay your kitty 💰. If already paid please wait for others!": 1,
     "Staking in progress, wait till status changes": 2,
     "The winner has been decided! ": 3,
@@ -93,8 +93,8 @@ export default function PageDetails(props) {
   currentRound = tryToDisplay(currentRound || 0) + 1;
 
   let amountPerRound = useContractReader(props.readContracts, "KittyParty", "amountPerRound");
-  amountPerRound = tryToDisplay(amountPerRound || 0);
-  const amountPerRoundDisplay = formatUnits(amountPerRound, "ether");
+  // amountPerRound = tryToDisplay(amountPerRound || 0);
+  const amountPerRoundDisplay =  tryToDisplay(amountPerRound || 0);//formatUnits(amountPerRound||0, "ether");
 
   let UniBalance = useContractReader(props.readContracts, "KittyParty", "checkUniBalance");
   UniBalance = formatUnits(tryToDisplay(UniBalance || 0), "ether");
@@ -114,13 +114,18 @@ export default function PageDetails(props) {
   const itemData = ["Round " + currentRound + " out of - " + noOfMembers];
 
   let currentBalance = useContractReader(props.readContracts, "KittyParty", "getBalance", [props.address]);
-  currentBalance = tryToDisplay(currentBalance || 0);
-  const currentBalanceDisplay = formatUnits(currentBalance, "ether");
+  // currentBalance = tryToDisplay(currentBalance || 0);
+  const currentBalanceDisplay = tryToDisplay(currentBalance || 0);//formatUnits(currentBalance||0, "ether");
   const isPendingPayment = () => {
     return KittyPartyCurrentState === 1 && amountPerRound > currentBalance;
   };
 
   const isPendingPaymentFlag = isPendingPayment();
+  const isPartyNotStarted = () => {
+    return KittyPartyCurrentState === 0;
+  };
+
+  const isPartyNotStartedFlag = isPartyNotStarted();
 
   console.log("my address --- ", currentBalance);
   const data = [
@@ -186,7 +191,7 @@ export default function PageDetails(props) {
       key: "4",
       name: "Current Balance",
       tags: [currentBalanceDisplay],
-    },
+    }
   ];
 
   // const [form] = Form.useForm();
@@ -209,14 +214,22 @@ export default function PageDetails(props) {
     return true;
     console.log("called tx");
   };
-  // const { Option } = Select;
+
+  // const navigateToCreateRoom = () =>{
+  //   try{
+  //     let path = `${path}/create-room`;
+  //   this.props.history.push(path);
+  //   }
+  //   catch(e){
+  //     openNotification("Error", e);
+  //   }
+  // }
 
   return (
     <div>
       {/* <Form form={form} name="dynamic_form_nest_item" onFinish={onFinish} autoComplete="off"> */}
-      <Card title="">
-        <Table columns={columns} dataSource={tableData} showHeader={false} pagination={false} />
-      </Card>
+      <Table columns={columns} dataSource={tableData} showHeader={false} pagination={false} />
+
       <div style={{ margin: "auto", marginTop: 32, paddingBottom: 32 }}>
         <h2 />
         <List
@@ -233,11 +246,16 @@ export default function PageDetails(props) {
         />
       </div>
       {/* <Form.Item> */}
-      <Button type="primary" htmlType="submit" onClick={() => makePayment()} block disabled={!isPendingPaymentFlag}>
-        Pay Pending Amount <ApartmentOutlined />
-      </Button>
-      {/* </Form.Item> */}
-      {/* </Form> */}
+      {isPendingPaymentFlag && (
+        <Button type="primary" htmlType="submit" onClick={() => makePayment()} block disabled={!isPendingPaymentFlag}>
+          Pay Pending Amount <ApartmentOutlined />
+        </Button>
+      )}
+      {isPartyNotStartedFlag && (
+        <Button type="dashed" href="/kittyui/create-room" shape="round" disabled={!isPartyNotStartedFlag}>
+          Create a Party?
+        </Button>
+      )}
     </div>
   );
 }

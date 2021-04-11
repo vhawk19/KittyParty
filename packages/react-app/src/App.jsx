@@ -127,9 +127,6 @@ function App(props) {
   ]);
   console.log("🥇 myMainnetDAIBalance:", myMainnetDAIBalance);
 
-  // 📟 Listen for broadcast events
-  // const setPurposeEvents = useEventListener(readContracts, "LotteryWinner", "SetPurpose", localProvider, 1);
-  // console.log("📟 SetPurpose events:", setPurposeEvents);
 
   /*
   const addressFromENS = useResolveName(mainnetProvider, "austingriffith.eth");
@@ -176,6 +173,7 @@ function App(props) {
   useEffect(() => {
     setRoute(window.location.pathname);
   }, [setRoute]);
+
 
   let faucetHint = "";
   const faucetAvailable =
@@ -303,10 +301,11 @@ function App(props) {
         />
         {faucetHint}
       </div>
+      
 
       {/* 🗺 Extra UI like gas price, eth price, faucet, and support: */}
       <div style={{ position: "fixed", textAlign: "left", left: 0, bottom: 20, padding: 10 }}>
-        <Row align="middle" gutter={[4, 4]}>
+        {/* <Row align="middle" gutter={[4, 4]}>
           <Col span={8}>
             <Ramp price={price} address={address} networks={NETWORKS} />
           </Col>
@@ -314,7 +313,7 @@ function App(props) {
           <Col span={8} style={{ textAlign: "center", opacity: 0.8 }}>
             <GasGauge gasPrice={gasPrice} />
           </Col>
-        </Row>
+        </Row> */}
 
         <Row align="middle" gutter={[4, 4]}>
           <Col span={24}>
