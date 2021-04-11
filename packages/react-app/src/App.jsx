@@ -127,13 +127,6 @@ function App(props) {
   ]);
   console.log("🥇 myMainnetDAIBalance:", myMainnetDAIBalance);
 
-  // keep track of a variable from the contract in the local React state:
-  const winner = useContractReader(readContracts, "LotteryWinner", "winnerAddress");
-  console.log("🤗 winner:", winner);
-
-  // 📟 Listen for broadcast events
-  // const setPurposeEvents = useEventListener(readContracts, "LotteryWinner", "SetPurpose", localProvider, 1);
-  // console.log("📟 SetPurpose events:", setPurposeEvents);
 
   /*
   const addressFromENS = useResolveName(mainnetProvider, "austingriffith.eth");
@@ -180,6 +173,7 @@ function App(props) {
   useEffect(() => {
     setRoute(window.location.pathname);
   }, [setRoute]);
+
 
   let faucetHint = "";
   const faucetAvailable =
@@ -231,7 +225,7 @@ function App(props) {
               }}
               to="/"
             >
-              LotteryWinner
+              Kitty Party Contract
             </Link>
           </Menu.Item>
           <Menu.Item key="/kittyui">
@@ -255,33 +249,12 @@ function App(props) {
             */}
 
             <Contract
-              name="LotteryWinner"
+              name="KittyParty"
               signer={userProvider.getSigner()}
               provider={localProvider}
               address={address}
               blockExplorer={blockExplorer}
             />
-
-            {/* uncomment for a second contract:
-            <Contract
-              name="SecondContract"
-              signer={userProvider.getSigner()}
-              provider={localProvider}
-              address={address}
-              blockExplorer={blockExplorer}
-            />
-            */}
-
-            {/* Uncomment to display and interact with an external contract (DAI on mainnet):
-            <Contract
-              name="DAI"
-              customContract={mainnetDAIContract}
-              signer={userProvider.getSigner()}
-              provider={mainnetProvider}
-              address={address}
-              blockExplorer={blockExplorer}
-            />
-            */}
           </Route>
           <Route path="/hints">
             <Hints
@@ -302,30 +275,10 @@ function App(props) {
               tx={tx}
               writeContracts={writeContracts}
               readContracts={readContracts}
-              winner={winner}
               web3Modal={web3Modal}
               loadWeb3Modal={loadWeb3Modal}
               logoutOfWeb3Modal={logoutOfWeb3Modal}
               blockExplorer={blockExplorer}
-              // setPurposeEvents={setPurposeEvents}
-            />
-          </Route>
-          <Route path="/mainnetdai">
-            <Contract
-              name="DAI"
-              customContract={mainnetDAIContract}
-              signer={userProvider.getSigner()}
-              provider={mainnetProvider}
-              address={address}
-              blockExplorer="https://etherscan.io/"
-            />
-          </Route>
-          <Route path="/subgraph">
-            <Subgraph
-              subgraphUri={props.subgraphUri}
-              tx={tx}
-              writeContracts={writeContracts}
-              mainnetProvider={mainnetProvider}
             />
           </Route>
         </Switch>
@@ -348,10 +301,11 @@ function App(props) {
         />
         {faucetHint}
       </div>
+      
 
       {/* 🗺 Extra UI like gas price, eth price, faucet, and support: */}
       <div style={{ position: "fixed", textAlign: "left", left: 0, bottom: 20, padding: 10 }}>
-        <Row align="middle" gutter={[4, 4]}>
+        {/* <Row align="middle" gutter={[4, 4]}>
           <Col span={8}>
             <Ramp price={price} address={address} networks={NETWORKS} />
           </Col>
@@ -359,7 +313,7 @@ function App(props) {
           <Col span={8} style={{ textAlign: "center", opacity: 0.8 }}>
             <GasGauge gasPrice={gasPrice} />
           </Col>
-        </Row>
+        </Row> */}
 
         <Row align="middle" gutter={[4, 4]}>
           <Col span={24}>

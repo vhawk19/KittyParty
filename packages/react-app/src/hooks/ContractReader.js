@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import usePoller from "./Poller";
 
-const DEBUG = false;
+const DEBUG = true;
 
 /*
   ~ What it does? ~
