@@ -94,7 +94,7 @@ export default function PageDetails(props) {
 
   let amountPerRound = useContractReader(props.readContracts, "KittyParty", "amountPerRound");
   // amountPerRound = tryToDisplay(amountPerRound || 0);
-  const amountPerRoundDisplay =  tryToDisplay(amountPerRound || 0);//formatUnits(amountPerRound||0, "ether");
+  const amountPerRoundDisplay =  tryToDisplay(amountPerRound || 0);// formatUnits(amountPerRound||0, "ether");
 
   let UniBalance = useContractReader(props.readContracts, "KittyParty", "checkUniBalance");
   UniBalance = formatUnits(tryToDisplay(UniBalance || 0), "ether");
@@ -126,16 +126,6 @@ export default function PageDetails(props) {
   };
 
   const isPartyNotStartedFlag = isPartyNotStarted();
-
-  console.log("my address --- ", currentBalance);
-  const data = [
-    {
-      title: "Ant Design Title 1",
-    },
-    {
-      title: "Ant Design Title 2",
-    },
-  ];
 
   const columns = [
     {
