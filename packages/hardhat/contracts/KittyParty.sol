@@ -325,8 +325,6 @@ function getStatus() public view returns (KittyPartyState){
         uint256 winnerPoolLength = getLength() - currentRound;
         uint256 randomResult = (randomness % winnerPoolLength) + 1;
         winnerAddress = memberList.possible_winners[randomResult];
-        emit LotteryComplete(requestId);
-        sendMoneyToWinner();
     }
     
     function getBalance(address ad) public view returns(uint256){
