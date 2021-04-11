@@ -3,11 +3,10 @@
 pragma solidity ^0.6.6;
 pragma experimental ABIEncoderV2;
 import "@chainlink/contracts/src/v0.6/VRFConsumerBase.sol";
-import "https://github.com/Uniswap/uniswap-v2-periphery/blob/master/contracts/interfaces/IUniswapV2Router02.sol";
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v3.4/contracts/token/ERC20/IERC20.sol";
+import "@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-// import "@openzeppelin/contracts/math/SafeMath.sol";
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v3.4/contracts/math/SafeMath.sol";
+// Do not use this contract in production, safemath has not been added and is using a version prior to 0.8
 
 contract KittyParty is VRFConsumerBase {
     bytes32 internal keyHash;
