@@ -9,6 +9,15 @@ The Kitty Party app will be the first app on the kurisan network. The Kitty Part
 
 The staked value is bound to be minimal and will be mainly used to offset the fees that would be required to run the system by payment from the contract directly to different wallets. Any left over amounts will be distributed to the lottery winner.
 
+## Development
+- `yarn install`
+- Change keystore/KEYFILE.json and add a password file
+- `cd packages/hardhat`
+- `yarn deploy`
+- In another terminal at root folder run `yarn start`
+- Visit localhost:3000 to see the app
+- See https://github.com/austintgriffith/scaffold-eth
+
 ## Main System Models: 
 - Everyone will win at least once [To Do for Hackathon]
 - Anyone can win without any gurantee; but you will reduce the chance of the person who won in a round already! 
@@ -17,7 +26,7 @@ The staked value is bound to be minimal and will be mainly used to offset the fe
 
 ## Target Audience
 Kitty Party focuses on a group of people with main target audience bringing in other people that has are not familiar or with little knowledge in Crypto. 
-Main target audience: 18~50 years old, female or male who would like to introduce Crypto to their friends or family. 
+Main target audience: 18~50 years old, female or male who would like to introduce Crypto to their friends or family.
 
 ### User Persona
 - One 22 year old college student wants to add her two cousins, one 31 and another 15 year old. She also managed to convince her mom's friend and her best friend. 
