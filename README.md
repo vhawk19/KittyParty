@@ -18,6 +18,7 @@ The staked value is bound to be minimal and will be mainly used to offset the fe
 - In another terminal at root folder run `yarn start`
 - Visit http://localhost:3000/kittyui/ to see the app , login, create a party, invite kittens!
 - See https://github.com/austintgriffith/scaffold-eth
+NOTE! - REMEMBER TO FILL THE CONTRACT WITH LINK TOKENS!
 
 ## Main System Models: 
 - Everyone will win at least once [To Do for Hackathon]
