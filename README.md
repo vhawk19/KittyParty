@@ -5,7 +5,7 @@ The first application on kurisan network
 
 The Kitty Party app will be the first app on the kurisan network. The Kitty Party application will enable a group of people to pool resources into staking in a pool. It allows transactions in local currencies and this can be translated into an actual stake in crypto land in return for staking rewards or farming rewards. The rewards along with the original amount is returned to one lottery winner from the kitty pool.
 
-![Kitty Party](https://i.ibb.co/t4gkX1Y/photo-2021-03-17-20-06-58.jpg)
+![Kitty Party](https://i.ibb.co/2YgKfn1/kittyparty.jpg)
 
 The staked value is bound to be minimal and will be mainly used to offset the fees that would be required to run the system by payment from the contract directly to different wallets. Any left over amounts will be distributed to the lottery winner.
 
