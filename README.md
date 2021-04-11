@@ -16,7 +16,7 @@ The staked value is bound to be minimal and will be mainly used to offset the fe
 - `cd packages/hardhat`
 - `yarn deploy`
 - In another terminal at root folder run `yarn start`
-- Visit localhost:3000 to see the app
+- Visit http://localhost:3000/kittyui/ to see the app , login, create a party, invite kittens!
 - See https://github.com/austintgriffith/scaffold-eth
 
 ## Main System Models: 
