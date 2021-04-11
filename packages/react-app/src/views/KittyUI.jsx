@@ -40,7 +40,7 @@ export default function KittyUI({
   // // const web3Contract = new web3.eth.Contract(KittyParty.abi, KittyParty.address);
 
   // let setKittyPartyVerifiedEvent = useEventListener(readContracts, "KittyParty", "Verified", localProvider, 1);
-  // const dagger = new Dagger("wss://mumbai-dagger.matic.today");
+  const dagger = new Dagger("wss://rpc-mumbai.maticvigil.com/ws/v1/e152634d2ad0cb5e46bb2b62d5ca33994ffcc239");
   // dagger.on("latest:log/" + KittyParty, (res, flag) => {
   //   console.log("📟 dagger events:", res);
   //   setOldPurposeEvents(res);
