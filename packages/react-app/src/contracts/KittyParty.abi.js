@@ -65,6 +65,19 @@ module.exports = [
     "anonymous": false,
     "inputs": [
       {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "requestId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "LotteryComplete",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
         "indexed": true,
         "internalType": "address",
         "name": "winner",
@@ -96,7 +109,7 @@ module.exports = [
         "type": "uint256"
       }
     ],
-    "name": "RoundCompled",
+    "name": "RoundCompleted",
     "type": "event"
   },
   {
@@ -559,7 +572,7 @@ module.exports = [
         "type": "bool"
       }
     ],
-    "stateMutability": "nonpayable",
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -572,7 +585,7 @@ module.exports = [
         "type": "bool"
       }
     ],
-    "stateMutability": "nonpayable",
+    "stateMutability": "view",
     "type": "function"
   },
   {

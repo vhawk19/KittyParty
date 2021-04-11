@@ -1,9 +1,12 @@
 // SPDX-License-Identifier: MIT
+
 pragma solidity ^0.6.6;
 pragma experimental ABIEncoderV2;
 import "@chainlink/contracts/src/v0.6/VRFConsumerBase.sol";
 import "@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+
+// Do not use this contract in production, safemath has not been added and is using a version prior to 0.8
 
 contract KittyParty is VRFConsumerBase {
     bytes32 internal keyHash;
@@ -56,9 +59,9 @@ contract KittyParty is VRFConsumerBase {
     AddressList internal memberList;
     StakeInfo internal stakeDetail;
     
-    address internal constant UNISWAP_ROUTER_ADDRESS = 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D ;
-    address internal constant UNISWAP_WETH_DAI_PAIR_ADDRESS = 0x8B22F85d0c844Cf793690F6D9DFE9F11Ddb35449;
-    address internal constant DAI_ADDRESS = 0xc7AD46e0b8a400Bb3C915120d284AafbA8fc4735;
+    address internal constant UNISWAP_ROUTER_ADDRESS = 0xa5E0829CaCEd8fFDD4De3c43696c57F7D7A678ff ;
+    address internal constant UNISWAP_WETH_DAI_PAIR_ADDRESS = 0x4A35582a710E1F4b2030A3F826DA20BfB6703C09;
+    address internal constant DAI_ADDRESS = 0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063;
     IUniswapV2Router02 public uniswapRouter;
     IERC20 public dai;
     IERC20 public uni_token;
@@ -87,12 +90,14 @@ contract KittyParty is VRFConsumerBase {
         uint256 roundNumber
     );
     
-    event RoundCompled(uint256 indexed roundNumber);
+    event LotteryComplete(bytes32 requestId);
+    
+    event RoundCompleted(uint256 indexed roundNumber);
     constructor()
         public
         VRFConsumerBase(
-            0xb3dCcb4Cf7a26f6cf6B120Cf5A73875B7BBc655B, // VRF Coordinator
-            0x01BE23585060835E02B77ef475b0Cc51aA1e0709 // LINK Token
+            0x8C7382F9D8f56b33781fE506E897a4F1e2d17255, // VRF Coordinator
+            0x326C977E6efc84E512bB9C30f76E30c160eD06FB // LINK Token
         )
     {
         keyHash = 0x2ed0feb3e7fd2022120aa84fab1945545a9f2ffc9076fd6156fa96eaff4c1311;
@@ -150,14 +155,14 @@ function getStatus() public view returns (KittyPartyState){
         return memberList.index[ad];
     }
 
-    function isKittyKreator(address candidateKreator) public returns (bool) {
+    function isKittyKreator(address candidateKreator) public view  returns (bool) {
         if(
             getValueAt(0) == candidateKreator
             ) return true;
             return false;
     }
 
-    function isKittyPartyActive() public returns (bool) {
+    function isKittyPartyActive() public view  returns (bool) {
         if (
             currentState == KittyPartyState.Trap ||
             currentState == KittyPartyState.Completed
@@ -188,8 +193,8 @@ function getStatus() public view returns (KittyPartyState){
             isKittyKreator(msg.sender),
             "You need to be the kitty kreator to deposit on behalf of a kitten"
         );
-        memberList.balance[kitten] += msg.value;
-        emit Deposit(kitten, msg.value);
+        memberList.balance[kitten] += amount;
+        emit Deposit(kitten, amount);
     }
 
     function withdraw(uint256 amount) public {
@@ -283,11 +288,11 @@ function getStatus() public view returns (KittyPartyState){
         }
         amountWon -= 102 * amountPerRound/100;
         currentState = KittyPartyState.Payout;
-        bytes32 result = runLottery(now);
+        runLottery(now);
     }
 
     function completeRound() internal {
-        emit RoundCompled(currentRound);
+        emit RoundCompleted(currentRound);
         currentRound += 1;
     }
 
@@ -320,6 +325,7 @@ function getStatus() public view returns (KittyPartyState){
         uint256 winnerPoolLength = getLength() - currentRound;
         uint256 randomResult = (randomness % winnerPoolLength) + 1;
         winnerAddress = memberList.possible_winners[randomResult];
+        emit LotteryComplete(requestId);
         sendMoneyToWinner();
     }
     

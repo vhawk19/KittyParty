@@ -318,8 +318,8 @@
       ]
     },
     "/home/wizgot/projects/newchain/KittyParty/packages/hardhat/contracts/KittyParty.sol": {
-      "lastModificationDate": 1618149223574,
-      "contentHash": "d777ad06b74969fe1d9c117ae040a7b3",
+      "lastModificationDate": 1618181637740,
+      "contentHash": "96d8cbfd090fcb4b07e4261309eda04f",
       "sourceName": "contracts/KittyParty.sol",
       "solcConfig": {
         "version": "0.6.7",
