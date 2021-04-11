@@ -10,6 +10,7 @@ The Kitty Party app will be the first app on the kurisan network. The Kitty Part
 The staked value is bound to be minimal and will be mainly used to offset the fees that would be required to run the system by payment from the contract directly to different wallets. Any left over amounts will be distributed to the lottery winner.
 
 ## Development
+- Use node 15.11.0
 - `yarn install`
 - Change keystore/KEYFILE.json and add a password file
 - `cd packages/hardhat`
